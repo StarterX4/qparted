@@ -36,6 +36,7 @@ CONFIG      += qt thread debug
 
 #LIBS
 unix:LIBS   += -ldl -lparted
+QT += widgets
 
 # Executable name
 TARGET       = qparted
