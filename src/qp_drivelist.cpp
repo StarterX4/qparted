@@ -23,6 +23,7 @@
 #include <QMessageBox>
 #include <QStringList>
 #include <QMenu>
+#include <QObject>
 #include <sys/param.h>  // MAXPATHLEN
 
 #include "qp_drivelist.h"
@@ -87,7 +88,7 @@ void QP_DriveList::buildView() {
         QTreeWidgetItem *item = addDevice(st, ideRoot);
 
         /*---add to the group menu---*/
-	QAction *actDisk = new QAction(QIcon(tool_disk), st, _agDevices);
+	QAction *actDisk = new QAction((QIcon(tool_disk)), st, _agDevices);
         actDisk->setCheckable(true);
 
         QP_DeviceNode *devicenode = new QP_DeviceNode();
