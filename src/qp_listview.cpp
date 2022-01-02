@@ -1,6 +1,6 @@
 /*
 	qtparted - a frontend to libparted for manipulating disk partitions
-	Copyright (C) 2002-2003 Vanni Brutto
+	Copyright (C) 2002-2003 Vanni Brutto; 2021-2022 StarterX4
 
 	Vanni Brutto <zanac (-at-) libero dot it>
 
@@ -261,7 +261,7 @@ void QP_RealListView::rightButtonClicked ( const QPoint &point )
 
 /*----------QP_ListView--------------------------------------------------------------*/
 /*---																			 ---*/
-QP_ListView::QP_ListView ( QWidget *parent, Qt::WFlags f )
+QP_ListView::QP_ListView ( QWidget *parent, Qt::WindowFlags f )
 		: QP_PartList ( parent, f )
 {
 
