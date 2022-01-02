@@ -10,4 +10,5 @@
 - clean up the code tree
 - change the icons to .svg, get rid of the raster files
 - QT5 support
+- QT6 support
 
