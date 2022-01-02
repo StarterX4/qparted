@@ -88,7 +88,7 @@ void QP_DriveList::buildView() {
         QTreeWidgetItem *item = addDevice(st, ideRoot);
 
         /*---add to the group menu---*/
-	QAction *actDisk = new QAction((QIcon(tool_disk)), st, _agDevices);
+	QAction *actDisk = new QAction(QIcon::pixmap(xmp/tool_disk.xmp), st, _agDevices);
         actDisk->setCheckable(true);
 
         QP_DeviceNode *devicenode = new QP_DeviceNode();
@@ -107,7 +107,7 @@ void QP_DriveList::buildView() {
 QTreeWidgetItem *QP_DriveList::addDevice(QString dev, QTreeWidgetItem *parent) {
     QTreeWidgetItem* item = new QTreeWidgetItem(parent);
     item->setText(0, dev);
-    item->setIcon(0, QPixmap(tool_disk));
+    item->setIcon(0, QPixmap(xmp/tool_disk.xmp));
 
     return item;
 }
