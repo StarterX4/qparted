@@ -2,6 +2,7 @@
 	qtparted - a frontend to libparted for manipulating disk partitions
 	Copyright (C) 2002-2003 Vanni Brutto <zanac (-at-) libero dot it>
 	Copyright (C) 2007-2008 David Tio <deux@arklinux.org>
+	Copyleft 2021-2020 StarterX4
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -28,7 +29,7 @@
 #include "qp_partwidget.h"
 #include "qp_filesystem.h"
 
-QP_PartWidget::QP_PartWidget(QP_PartInfo *pinfo, QWidget *parent, Qt::WFlags f)
+QP_PartWidget::QP_PartWidget(QP_PartInfo *pinfo, QWidget *parent, Qt::WindowFlags f)
 	:QWidget(parent, f) {
 	_Selected = false;
 	partinfo = pinfo;   //Pointer to the QP_PartInfo class wich contain info about the partition
