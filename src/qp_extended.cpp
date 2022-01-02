@@ -1,6 +1,6 @@
 /*
     qtparted - a frontend to libparted for manipulating disk partitions
-    Copyright (C) 2002-2003 Vanni Brutto
+    Copyright (C) 2002-2003 Vanni Brutto; 2021-2020 StarterX4
 
     Vanni Brutto <zanac (-at-) libero dot it>
 
@@ -22,7 +22,7 @@
 #include "qp_extended.h"
 
 
-QP_Extended::QP_Extended(QP_PartInfo *pinfo, QWidget *parent, Qt::WFlags f)
+QP_Extended::QP_Extended(QP_PartInfo *pinfo, QWidget *parent, Qt::WindowFlags f)
     :QP_PartWidget(pinfo, parent, f) {
 
     container = new QWidget(this);
