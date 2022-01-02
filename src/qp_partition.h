@@ -1,6 +1,6 @@
 /*
     qparted - a frontend to libparted for manipulating disk partitions
-    Copyright (C) 2002-2003 Vanni Brutto; 2015- ZZYZX
+    Copyright (C) 2002-2003 Vanni Brutto; 2015 ZZYZX; 2021-2022 StarterX4
 
     Vanni Brutto <zanac (-at-) libero dot it>
 
@@ -36,7 +36,7 @@ class QP_Partition : public QP_PartWidget {
 Q_OBJECT
 
 public:
-	QP_Partition(QP_PartInfo *, QWidget *parent=0, Qt::WFlags f = 0);
+	QP_Partition(QP_PartInfo *, QWidget *parent=0, Qt::WindowFlags f = 0);
 	~QP_Partition();
 };
 
