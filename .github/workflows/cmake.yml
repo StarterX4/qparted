@@ -31,7 +31,7 @@ jobs:
       uses: mstksg/get-package@2a4b48d55d72d43ca89ae58ec9ca1397d34a1c35
       with:
   # Space-separated list of packages to install using apt-get. Will only run if on ubuntu.
-       apt-get: parted e2fsprogs dosfstools jfsutils reiserfsprogs xfsprogs libparted-dev
+       apt-get: parted e2fsprogs dosfstools jfsutils reiserfsprogs xfsprogs libparted-dev clazy
 
     #- name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -41,7 +41,7 @@ jobs:
     - name: Build
       # Build your program with the given configuration
       #run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=/usr -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake-qt5
-      run: qmake ${{github.workspace}}/qparted.pro
+      run: qmake -spec linux-clang QMAKE_CXX="clazy" ${{github.workspace}}/qparted.pro
     - name: make
       run: make
 
