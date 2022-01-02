@@ -2,6 +2,7 @@
 	qparted - a frontend to libparted for manipulating disk partitions
 	Copyright (C) 2002-2003 Vanni Brutto <zanac (-at-) libero dot it>
 	Copyright (C) 2010-2011 Bernhard Rosenkraenzer <bero (-at-) arklinux dot ch>
+	Copyleft 2021-2022 StarterX4
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
