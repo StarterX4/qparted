@@ -1,6 +1,6 @@
 /*
     qparted - a frontend to libparted for manipulating disk partitions
-    Copyright (C) 2002-2003 Vanni Brutto; 2015- ZZYZX
+    Copyright (C) 2002-2003 Vanni Brutto; 2015 ZZYZX; 2021-2022 StarterX4
 
     Vanni Brutto <zanac (-at-) libero dot it>
 
@@ -38,7 +38,7 @@ class QP_Extended : public QP_PartWidget {
 Q_OBJECT
 
 public:
-    QP_Extended(QP_PartInfo *, QWidget *parent=0, Qt::WFlags f = 0);
+    QP_Extended(QP_PartInfo *, QWidget *parent=0, Qt::WindowFlags f = 0);
     ~QP_Extended();
     QWidget *container; // Widget in which you attach logical partition
     QP_Partition *addLogical(QP_PartInfo *); //Add logical partition to the container
