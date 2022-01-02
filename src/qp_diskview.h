@@ -1,6 +1,6 @@
 /*
 	qparted - a frontend to libparted for manipulating disk partitions
-	Copyright (C) 2002-2003 Vanni Brutto; 2015- ZZYZX
+	Copyright (C) 2002-2003 Vanni Brutto; 2015 ZZYZX; 2021-2022 StarterX4
 
 	Vanni Brutto <zanac (-at-) libero dot it>
 
