@@ -1,4 +1,6 @@
 - Add btrfs support
+- Add f2fs support
+- Add spadfs support
 - Use mkfs.* tools instead of parted for filesystem creation
 
 - badblocks check
