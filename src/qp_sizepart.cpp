@@ -1,6 +1,6 @@
 /*
     qtparted - a frontend to libparted for manipulating disk partitions
-    Copyright (C) 2002-2003 Vanni Brutto
+    Copyright (C) 2002-2003 Vanni Brutto; 2021-2022 StarterX4
 
     Vanni Brutto <zanac (-at-) libero dot it>
 
@@ -32,7 +32,7 @@
 
 #define ARROW_MARGIN 12
 
-QP_SizeContainer::QP_SizeContainer(QWidget *parent, Qt::WFlags f)
+QP_SizeContainer::QP_SizeContainer(QWidget *parent, Qt::WindowFlags f)
     :QWidget(parent, f) {
     sizepartition = new QP_SizePartition(this);
 
@@ -131,7 +131,7 @@ void QP_SizeContainer::slotChangedPos() {
 
 
 
-QP_SizePartition::QP_SizePartition(QWidget *parent, Qt::WFlags f)
+QP_SizePartition::QP_SizePartition(QWidget *parent, Qt::WindowFlags f)
     :QWidget(parent, f) {
 
     setMouseTracking(true);
