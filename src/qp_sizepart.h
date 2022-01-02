@@ -78,7 +78,7 @@ class QP_SizePartition : public QWidget {
 Q_OBJECT
 
 public:
-    QP_SizePartition(QWidget *parent=0, Qt::WFlags f = 0);
+    QP_SizePartition(QWidget *parent=0, Qt::WindowFlags f = 0);
     ~QP_SizePartition();
     void setMinSizeInPixel(int);
     void setMode(QTParted::actType);
