@@ -1,7 +1,7 @@
 /*
 	qtparted - a frontend to libparted for manipulating disk partitions
 	Copyright (C) 2002-2003 Vanni Brutto <zanac (-at-) libero dot it>
-	Copyright (C) 2007-2008 David Tio <deux@arklinux.org>
+	Copyright (C) 2007-2008 David Tio <deux@arklinux.org>; 	2021-2022 StarterX4
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation; either version 2 of the License, or
@@ -33,7 +33,7 @@ public:
 	int width;
 };
 
-QP_ListChart::QP_ListChart(QWidget *parent, Qt::WFlags f)
+QP_ListChart::QP_ListChart(QWidget *parent, Qt::WindowFlags f)
 	:QP_PartList(parent, f) {
 
 	/*---prevent a segfualt in ::clear method!---*/
