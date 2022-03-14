@@ -18,8 +18,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <QIcon>
-#include <QPixmap>
 #include <QMessageBox>
 #include <QStringList>
 #include <QMenu>
@@ -30,7 +28,6 @@
 #include "qp_devlist.h"
 #include "qp_libparted.h"
 #include "qp_common.h"
-#include "xpm/tool_disk.xpm"
 
 QP_DriveList::QP_DriveList(QWidget *parent, QP_Settings *settings)
     :QTreeWidget(parent) {
@@ -88,7 +85,7 @@ void QP_DriveList::buildView() {
         QTreeWidgetItem *item = addDevice(st, ideRoot);
 
         /*---add to the group menu---*/
-	QAction *actDisk = new QAction(QIcon::pixmap(tool_disk), st, _agDevices);
+	QAction *actDisk = new QAction(st, _agDevices);
         actDisk->setCheckable(true);
 
         QP_DeviceNode *devicenode = new QP_DeviceNode();
@@ -107,7 +104,6 @@ void QP_DriveList::buildView() {
 QTreeWidgetItem *QP_DriveList::addDevice(QString dev, QTreeWidgetItem *parent) {
     QTreeWidgetItem* item = new QTreeWidgetItem(parent);
     item->setText(0, dev);
-    item->setIcon(0, QPixmap(tool_disk));
 
     return item;
 }
