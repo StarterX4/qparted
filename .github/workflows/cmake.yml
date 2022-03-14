@@ -42,7 +42,6 @@ jobs:
     - name: Build
       # Build your program with the given configuration
       #run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=/usr -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake-qt5
-      working-directory: ${{github.workspace}}/build
       run: qmake ${{github.workspace}}/qparted.pro
     - name: make
       run: make
