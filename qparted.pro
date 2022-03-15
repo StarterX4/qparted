@@ -31,8 +31,8 @@ DEFINES     += VERSION='"\\"0.6.1\\""'
 
 INCLUDEPATH += . ui src ts
 
-# Configuration.  Remove the word 'thread' to build against non-threaded Qt
-CONFIG      += qt thread debug
+# Configuration.  Remove the word 'thread' to build against non-threaded Qt.
+CONFIG      += qt thread release 
 
 #LIBS
 unix:LIBS   += -ldl -lparted
@@ -134,4 +134,4 @@ QMAKE_CLEAN += $(TARGET) $(QMAKE_TARGET)
 # Install
 QPARTED.path = /usr/bin
 QPARTED.files = qparted
-INSTALLS += QPARTED
+INSTALLS += QPARTED executable
