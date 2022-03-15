@@ -128,6 +128,9 @@ TRANSLATIONS = ts/qparted_ca.ts        \
                ts/qparted_sv.ts        \
                ts/qparted_ua.ts
 
+# Flags
+QMAKE_CXXFLAGS += "-pipe -Ofast -fno-sized-deallocation"
+
 # Tidy
 QMAKE_CLEAN += $(TARGET) $(QMAKE_TARGET)
 
