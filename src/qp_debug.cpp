@@ -69,13 +69,11 @@ int QP_Debug::write(const char *szFile, const char *szFunction, int nLine, const
    if (!isOpen())
       return -1;
 
-   //QMessageBox::information(NULL, "debug", fmt);
-
    va_start(args, fmt);
    fprintf(m_fDebug, "[%s]->[%s]#%d: ", szFile, szFunction, nLine);
    vfprintf(m_fDebug, fmt, args);
-
    va_end(args);
+
    fflush(m_fDebug);
 
    return 0;
@@ -84,20 +82,15 @@ int QP_Debug::write(const char *szFile, const char *szFunction, int nLine, const
 // =====================================
 int QP_Debug::open()
 {
-   QDateTime dt;
-   QString strFilename;
-
-   if (isOpen())
-      return -1;
-
-   // finds a filename
-   dt = QDateTime::currentDateTime();
-   strFilename.sprintf("/var/log/qtparted-%.4d%.2d%.2d-%.2dh%.2dm%.2ds.log",
-                       dt.date().year(), dt.date().month(), dt.date().day(),
-		       dt.time().hour(), dt.time().minute(), dt.time().second());
+   QDateTime dt = QDateTime::currentDateTime();
+   QString strFilename = QString("/var/log/qtparted-%1-%2-%3-%4h%5m%6s.log")
+                          .arg(dt.date().toString("yyyy-MM-dd"))
+                          .arg(dt.time().toString("hh"))
+                          .arg(dt.time().toString("mm"))
+                          .arg(dt.time().toString("ss"));
 
    // open the file
-   m_fDebug = fopen(strFilename.toLatin1(), "w+");
+   m_fDebug = fopen(strFilename.toLocal8Bit().constData(), "w+");
    if (!m_fDebug)
       return -1;
 
@@ -107,11 +100,11 @@ int QP_Debug::open()
 // =====================================
 int QP_Debug::close()
 {
-   if (m_fDebug == NULL)
+   if (m_fDebug == nullptr)
      return -1;
 
    fclose(m_fDebug);
-   m_fDebug = NULL;
+   m_fDebug = nullptr;
 
    return 0; // success
 }

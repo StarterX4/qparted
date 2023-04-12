@@ -24,32 +24,32 @@
  * This is a widget that join a QP_SpinBox and a combobox... it is just an idea ;)
  */
 
-#include <qlayout.h>
-#include <qcombobox.h>
-#include <qwidget.h>
+#include <QHBoxLayout>
+#include <QComboBox>
+#include <QWidget>
 #include "qp_spinbox.h"
 
 #ifndef QP_COMBOSPIN_H
 #define QP_COMBOSPIN_H
 
 class QP_ComboSpin : public QWidget {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	QP_ComboSpin(QWidget *parent = 0L);
-	~QP_ComboSpin();
-	void setRange(PedSector, PedSector);
-	void setMaxValue(PedSector);
-	void setMinValue(PedSector);
-	void setValue(PedSector);
-	PedSector value();
-	PedSector maxValue();
+    QP_ComboSpin(QWidget *parent = nullptr);
+    ~QP_ComboSpin();
+    void setRange(PedSector, PedSector);
+    void setMaxValue(PedSector);
+    void setMinValue(PedSector);
+    void setValue(PedSector);
+    PedSector value();
+    PedSector maxValue();
 
 signals:
-	void valueChanged(PedSector);
+    void valueChanged(PedSector);
 
 protected:
-	QHBoxLayout *layout;
-	QComboBox *combobox;
-	QP_SpinBox *spinbox;
+    QHBoxLayout *layout;
+    QComboBox *combobox;
+    QP_SpinBox *spinbox;
 };
 #endif

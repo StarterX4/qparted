@@ -33,11 +33,11 @@
 #include <QDialog>
 #include "ui_qp_ui_devprop.h"
 
-class QP_dlgDevProperty : public QDialog,public Ui::QP_UIDeviceProperty {
-Q_OBJECT
+class QP_dlgDevProperty : public QDialog, public Ui::QP_UIDeviceProperty {
+    Q_OBJECT
 
 public:
-    QP_dlgDevProperty(QWidget *parent=0);
+    QP_dlgDevProperty(QWidget* parent = nullptr);
     ~QP_dlgDevProperty();
     void init_dialog();                     /*---clear combo box and other stuff                     ---*/
     int show_dialog();                      /*---just show the dialog. Call it after init_dialog     ---*/

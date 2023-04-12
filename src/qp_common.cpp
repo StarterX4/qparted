@@ -36,6 +36,6 @@ QP_ListExternalTools *lstExternalTools = new QP_ListExternalTools();
 /*---this function test if the kernel support devfs.
  *   the code was bring from partimage software made by Fran?ois Dupoux---*/
 bool isDevfsEnabled() {
-	flagDevfsEnabled=!access("/dev/.devfsd", F_OK);
-	return flagDevfsEnabled;
+    flagDevfsEnabled = !access("/dev/.devfsd", F_OK);
+    return flagDevfsEnabled;
 }

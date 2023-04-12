@@ -35,11 +35,11 @@
 #include "ui_qp_ui_create.h"
 #include "qp_libparted.h"
 
-class QP_dlgCreate : public QDialog, public Ui_QP_UICreate {
+class QP_dlgCreate : public QDialog, public Ui::QP_UICreate {
 	Q_OBJECT
 
 public:
-	QP_dlgCreate(QWidget *parent=0);
+	QP_dlgCreate(QWidget *parent=Q_NULLPTR);
 	~QP_dlgCreate();
 	void init_dialog();			/*---clear combo box and other stuff					 ---*/
 	void setFileSystem(QP_FileSystem *);	/*---filesystem list									 ---*/
@@ -69,3 +69,4 @@ protected slots:
 };
 
 #endif
+

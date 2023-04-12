@@ -40,44 +40,44 @@ class QP_DiskView : public QWidget {
 Q_OBJECT
 
 public:
-	QP_DiskView(QWidget *parent=0, Qt::WindowFlags f = 0);
-	~QP_DiskView();
-	QP_PartInfo *selPartInfo();					/*---return the selected partition			 ---*/
-	void setDevice(QP_Device *);				   /*---set the device (example: /dev/hda)		---*/
-	void update_partlist();						/*---redraw the QP_PartList widgets attached   ---*/
-	void refresh();								/*---destroy libparted and call refresh_widgets---*/
-	void setLayout(int);						   /*---set the layout of the widget			  ---*/
-	bool canUndo();								/*---the state of the disk is changed?		 ---*/
-	void undo();								   /*---undo last operation					   ---*/
-	void commit();								 /*---commit all operations					 ---*/
-	QP_LibParted *libparted;					   /*---libparted is the wrapper to parted		---*/
-	QP_ListChart *listchart;					   /*---chart implementation of QP_PartList	   ---*/
-	QP_ListView *listview;						 /*---list implementation of QP_PartList		---*/
-	QP_FileSystem *filesystem;					 /*---a class with all feature of filesystems   ---*/
+    QP_DiskView(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
+    ~QP_DiskView();
+    QP_PartInfo *selPartInfo();                    /*---return the selected partition             ---*/
+    void setDevice(QP_Device *);                   /*---set the device (example: /dev/hda)         ---*/
+    void update_partlist();                        /*---redraw the QP_PartList widgets attached    ---*/
+    void refresh();                                /*---destroy libparted and call refresh_widgets---*/
+    void setLayout(int);                           /*---set the layout of the widget               ---*/
+    bool canUndo();                                /*---the state of the disk is changed?           ---*/
+    void undo();                                   /*---undo last operation                        ---*/
+    void commit();                                 /*---commit all operations                      ---*/
+    QP_LibParted *libparted;                       /*---libparted is the wrapper to parted          ---*/
+    QP_ListChart *listchart;                       /*---chart implementation of QP_PartList        ---*/
+    QP_ListView *listview;                         /*---list implementation of QP_PartList         ---*/
+    QP_FileSystem *filesystem;                     /*---a class with all feature of filesystems     ---*/
 
 private:
-	QP_Device *_qpdevice;						  /*---this is the device (example: /dev/hda)	---*/
-	void refresh_widgets();						/*---recalculate and redraw QP_PartList		---*/
-	void clear();								  /*---clear partitions						  ---*/
-	void addPrimary(QP_PartInfo *);				/*---add a Primary or Extended partition	   ---*/
-	void addLogical(QP_PartInfo *);				/*---add a Logical partition				   ---*/
-	void draw();								   /*---repaint the widget of partitions		  ---*/
-	void set_mb_hdsize(float);					 /*---set the size of the hardisk			   ---*/
+    QP_Device *_qpdevice;                          /*---this is the device (example: /dev/hda)      ---*/
+    void refresh_widgets();                        /*---recalculate and redraw QP_PartList         ---*/
+    void clear();                                  /*---clear partitions                           ---*/
+    void addPrimary(QP_PartInfo *);                /*---add a Primary or Extended partition        ---*/
+    void addLogical(QP_PartInfo *);                /*---add a Logical partition                    ---*/
+    void draw();                                    /*---repaint the widget of partitions           ---*/
+    void set_mb_hdsize(float);                      /*---set the size of the hardisk                ---*/
 
 signals:
-	void sigSelectPart(QP_PartInfo *);			 /*---emitted when you change the selection	 ---*/
-	void sigPopup();						 /*---emitted when you want to popup a menu	 ---*/
-	void sigDevicePopup();					   /*---emitted when you want to pop deivce menu  ---*/
-	void sigTimer(int, QString, QString);		  /*---emitted to update a progress bar		  ---*/
-	void sigOperations(QString, QString, int, int);/*---emitted when doing commit				 ---*/
-	void sigDiskChanged();						 /*---emitted to state of the disk changed	  ---*/
+    void sigSelectPart(QP_PartInfo *);               /*---emitted when you change the selection     ---*/
+    void sigPopup();                              /*---emitted when you want to popup a menu      ---*/
+    void sigDevicePopup();                         /*---emitted when you want to pop deivce menu   ---*/
+    void sigTimer(int, QString, QString);          /*---emitted to update a progress bar           ---*/
+    void sigOperations(QString, QString, int, int);/*---emitted when doing commit                  ---*/
+    void sigDiskChanged();                         /*---emitted to state of the disk changed       ---*/
 
 protected slots:
-	void slotListChartSelectPart(QP_PartInfo *);   /*---connected to receive signal from ListChart---*/
-	void slotListViewSelectPart(QP_PartInfo *);	/*---connected to receive signal from ListView ---*/
+    void slotListChartSelectPart(QP_PartInfo *);   /*---connected to receive signal from ListChart ---*/
+    void slotListViewSelectPart(QP_PartInfo *);    /*---connected to receive signal from ListView  ---*/
 
 protected:
-	QVBoxLayout	_layout;
+    QVBoxLayout _layout;
 };
 
 #endif

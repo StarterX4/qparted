@@ -19,8 +19,8 @@
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <qlabel.h>
-#include <qstring.h>
+#include <QLabel>
+#include <QString>
 #include "qp_dlgdevprop.h"
 
 QP_dlgDevProperty::QP_dlgDevProperty(QWidget *parent):QDialog(parent),Ui::QP_UIDeviceProperty() {

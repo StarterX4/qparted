@@ -24,7 +24,6 @@
  * This class keep a list with all devices (ie all hard disk) detected by libparted
  */
 
-
 #ifndef QP_DEVLIST_H
 #define QP_DEVLIST_H
 
@@ -32,7 +31,6 @@
 #include <QList>
 #include <QString>
 #include "qp_settings.h"
-
 
 class QP_Device {
 public:
@@ -62,7 +60,6 @@ private:
     QP_Settings *settings;
 };
 
-
 class QP_DevList {
 public:
     QP_DevList(QP_Settings *);
@@ -75,4 +72,3 @@ private:
 };
 
 #endif
-

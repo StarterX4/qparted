@@ -18,12 +18,12 @@
 #ifndef QP_DEBUG_H
 #define QP_DEBUG_H
 
-#include <stdio.h>
+#include <cstdio>
 
 class QP_Debug;
 extern QP_Debug g_debug;
 
-#define showDebug(format, args...) g_debug.write(__FILE__, __FUNCTION__, __LINE__, format, ## args)
+#define showDebug(format, ...) g_debug.write(__FILE__, __FUNCTION__, __LINE__, format, ##__VA_ARGS__)
 
 class QP_Debug
 {
@@ -38,7 +38,8 @@ class QP_Debug
       int write(const char *szFile, const char *szFunction, int nLine, const char *fmt, ...);
 
    private:
-      FILE *m_fDebug;
+      FILE *m_fDebug = nullptr;
 };
 
-#endif // DEBUG_H
+#endif // QP_DEBUG_H
+

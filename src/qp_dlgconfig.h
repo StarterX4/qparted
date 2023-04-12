@@ -41,24 +41,24 @@
 #include "qparted.h"
 
 class QP_dlgConfig : public QDialog {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	QP_dlgConfig(QWidget *parent=0);
-	~QP_dlgConfig();
-	int layout();		  /*---get the layout		---*/
-	void setLayout(int);   /*---set the layout		---*/
+    QP_dlgConfig(QWidget *parent = nullptr);
+    ~QP_dlgConfig();
+    int layout();		  /*---get the layout		---*/
+    void setLayout(int);   /*---set the layout		---*/
 
 protected slots:
-	void ok();
+    void ok();
 
 protected:
-	QVBoxLayout	_layout;
-	QLabel *	_lblLayout;
-	QComboBox *	_cmbLayout;
-	QLabel *	_lblExtTools;
-	QTableWidget *	_extTools;
-	QHBoxLayout *	_buttonLayout;
-	QPushButton *	_btnOk;
-	QPushButton *	_btnCancel;
+    QVBoxLayout	_layout;
+    QLabel *_lblLayout;
+    QComboBox *_cmbLayout;
+    QLabel *_lblExtTools;
+    QTableWidget *_extTools;
+    QHBoxLayout *_buttonLayout;
+    QPushButton *_btnOk;
+    QPushButton *_btnCancel;
 };
 #endif
