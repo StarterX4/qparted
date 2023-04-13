@@ -136,12 +136,12 @@ int main(int argc, char *argv[]) {
 	isDevfsEnabled();
 
 	QP_Settings settings;
+	
+	QP_MainWindow mainwindow(&settings, nullptr);
 
-	QP_MainWindow mainwindow(&settings);
-
-	QSplashScreen *splash = new QSplashScreen(QPixmap(":/pixmaps/qtp_splash.png"));
-	splash->connect(&mainwindow, &QP_MainWindow::sigSplashInfo,
-			splash, &QSplashScreen::message);
+	QSplashScreen *splash = new QSplashScreen(QPixmap(DATADIR "/pixmaps/qtp_splash.png"));
+	splash->connect(&mainwindow, SIGNAL(sigSplashInfo(const QString &)),
+					SLOT(message(const QString &)));
 	splash->finish(&mainwindow);
 	splash->show();
 
@@ -153,7 +153,10 @@ int main(int argc, char *argv[]) {
 
 	mainwindow.show();
 
-	int rc = app.exec();
+	bool rc = app.exec();
+
+	delete splash;
+	delete &mainwindow;
 
 	if (iLog) g_debug.close();
 
