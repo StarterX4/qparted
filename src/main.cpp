@@ -21,6 +21,7 @@
 
 #include <getopt.h>
 #include <QApplication>
+#include <QDebug>
 #include <QTranslator>
 #include <QMessageBox>
 #include <QLocale>
