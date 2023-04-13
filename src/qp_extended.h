@@ -29,22 +29,22 @@
 #ifndef QP_EXTENDED_H
 #define QP_EXTENDED_H
 
-#include <qwidget.h>
+#include <QWidget>
 #include "qp_partwidget.h"
 #include "qp_partition.h"
 #include <QResizeEvent>
 
 class QP_Extended : public QP_PartWidget {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    QP_Extended(QP_PartInfo *, QWidget *parent=0, Qt::WindowFlags f = 0);
+    QP_Extended(QP_PartInfo *, QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
     ~QP_Extended();
     QWidget *container; // Widget in which you attach logical partition
     QP_Partition *addLogical(QP_PartInfo *); //Add logical partition to the container
 
 protected:
-    void resizeEvent(QResizeEvent *); //Reimplemented to resize the container
+    void resizeEvent(QResizeEvent *event) override; //Reimplemented to resize the container
 };
 
 #endif

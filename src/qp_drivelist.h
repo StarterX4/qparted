@@ -36,36 +36,36 @@
 
 class QP_DeviceNode {
 public:
-	QAction *action;
-	QTreeWidgetItem *listitem;
+    QAction *action;
+    QTreeWidgetItem *listitem;
 };
 
 class QP_DriveList : public QTreeWidget {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QP_DriveList(QWidget *parent=0, QP_Settings *settings=0);
-	~QP_DriveList();
-	void setPopup(QMenu *); /*---set the popup menu (right click)---*/
-	void buildView();
-	QTreeWidgetItem *addDevice(QString, QTreeWidgetItem *);
-	QActionGroup *agDevices();
-	QP_Device *selDevice(); /*---return the selected device---*/
+    QP_DriveList(QWidget *parent = nullptr, QP_Settings *settings = nullptr);
+    ~QP_DriveList();
+    void setPopup(QMenu *); /*---set the popup menu (right click)---*/
+    void buildView();
+    QTreeWidgetItem *addDevice(QString, QTreeWidgetItem *);
+    QActionGroup *agDevices();
+    QP_Device *selDevice(); /*---return the selected device---*/
 
 private:
-	QActionGroup *_agDevices;
-	QP_DevList *devlist;
-	QMenu *_popup;
-	QP_Device *_selDevice;
+    QActionGroup *_agDevices;
+    QP_DevList *devlist;
+    QMenu *_popup;
+    QP_Device *_selDevice;
 
 signals:
-	void deviceSelected(QP_Device *);
-	void onItem(QString);
+    void deviceSelected(QP_Device *);
+    void onItem(QString);
 
 public slots:
-        void slotDisksSelected();
-	void slotActionSelected(QAction *);
-	void slotPopUp();
+    void slotDisksSelected();
+    void slotActionSelected(QAction *);
+    void slotPopUp();
 };
 
 #endif

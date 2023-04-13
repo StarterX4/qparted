@@ -21,9 +21,8 @@
 
 /* About QP_ListExternalTools class
  *
- * This class keep a list of all external tools needed by libparted wrapper
+ * This class keeps a list of all external tools needed by the libparted wrapper
  */
-
 
 #ifndef QP_EXTTOOLS_H
 #define QP_EXTTOOLS_H

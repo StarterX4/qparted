@@ -21,22 +21,25 @@
 
 #include "qp_extended.h"
 
-
 QP_Extended::QP_Extended(QP_PartInfo *pinfo, QWidget *parent, Qt::WindowFlags f)
-    :QP_PartWidget(pinfo, parent, f) {
-
+    : QP_PartWidget(pinfo, parent, f)
+{
     container = new QWidget(this);
+    setObjectName("QP_Extended");
 }
 
-QP_Extended::~QP_Extended() {
+QP_Extended::~QP_Extended()
+{
 }
 
-QP_Partition *QP_Extended::addLogical(QP_PartInfo *partinfo) {
+QP_Partition *QP_Extended::addLogical(QP_PartInfo *partinfo)
+{
     QP_Partition *logical = new QP_Partition(partinfo, container);
     return logical;
 }
 
-void QP_Extended::resizeEvent(QResizeEvent *e) {
+void QP_Extended::resizeEvent(QResizeEvent *e)
+{
     int w = e->size().width();
     int h = e->size().height();
     container->setGeometry(6, 6, w-12, h-12);

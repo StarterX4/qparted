@@ -19,67 +19,69 @@
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <qapplication.h>
-#include <qprogressbar.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
+#include <QApplication>
+#include <QProgressBar>
+#include <QLabel>
+#include <QPushButton>
+#include <QCloseEvent>
+
 #include "qp_dlgprogress.h"
 
 QP_dlgProgress::QP_dlgProgress(QWidget *parent):QDialog(parent),Ui::QP_UIProgress() {
-	setupUi(this);
+    setupUi(this);
 
-	QPalette pal=lblMessage->palette();
-	pal.setColor(QPalette::WindowText, Qt::red); // Error messages in red
-	lblMessage->setPalette(pal);
+    QPalette pal=lblMessage->palette();
+    pal.setColor(QPalette::WindowText, Qt::red); // Error messages in red
+    lblMessage->setPalette(pal);
 }
 
 QP_dlgProgress::~QP_dlgProgress() {
 }
 
 void QP_dlgProgress::init_dialog() {
-	btnOk->setEnabled(false);
-	progressBar->setValue(0);
-	lblState->setText(tr("Initializing"));
-	lblMessage->setText(QString::null);
-	lblTimeLeft->setText(QString::null);
+    btnOk->setEnabled(false);
+    progressBar->setValue(0);
+    lblState->setText(tr("Initializing"));
+    lblMessage->setText(QString::null);
+    lblTimeLeft->setText(QString::null);
 }
 
 int QP_dlgProgress::show_dialog() {
-	return exec();
+    return exec();
 }
 
 void QP_dlgProgress::closeEvent (QCloseEvent *ce) {
-	if (btnOk->isEnabled())
-		ce->accept();
-	else
-		ce->ignore();
+    if (btnOk->isEnabled())
+        ce->accept();
+    else
+        ce->ignore();
 }
 
 void QP_dlgProgress::slotTimer(int percent, QString state, QString timeleft) {
-	QString tleft;
-	tleft = QString(tr("Time Left: %1"))
-					.arg(timeleft);
+    QString tleft;
+    tleft = QString(tr("Time Left: %1"))
+                    .arg(timeleft);
 
-	progressBar->setValue(percent);
-	lblState->setText(state);
-	lblTimeLeft->setText(tleft);
-	qApp->processEvents();
+    progressBar->setValue(percent);
+    lblState->setText(state);
+    lblTimeLeft->setText(tleft);
+    qApp->processEvents();
 }
 
 void QP_dlgProgress::slotOperations(QString operation, QString message, int count, int total) {
-	QString label = QString(tr("Operation: %1 of %2.\nCurrent operation: %3"))
-				   .arg(count)
-				   .arg(total)
-				   .arg(operation);
+    QString label = QString(tr("Operation: %1 of %2.\nCurrent operation: %3"))
+                   .arg(count)
+                   .arg(total)
+                   .arg(operation);
 
-	lblStep->setText(label);
+    lblStep->setText(label);
 
-	lblMessage->setText(message);
+    lblMessage->setText(message);
 
-	if (count == total) {
-		if (lblMessage->text().isNull()) {
-			lblMessage->setText(tr("Operations completed sucessfully."));
-		}
-		btnOk->setEnabled(true);
-	}
+    if (count == total) {
+        if (lblMessage->text().isNull()) {
+            lblMessage->setText(tr("Operations completed sucessfully."));
+        }
+        btnOk->setEnabled(true);
+    }
 }

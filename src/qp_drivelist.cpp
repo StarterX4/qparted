@@ -30,53 +30,56 @@
 #include "qp_common.h"
 
 QP_DriveList::QP_DriveList(QWidget *parent, QP_Settings *settings)
-    :QTreeWidget(parent) {
+    : QTreeWidget(parent)
+{
     setSelectionMode(QAbstractItemView::SingleSelection);
     setAllColumnsShowFocus(true);
     setColumnCount(1);
     setHeaderLabel(tr("Device"));
 
     /*---init the selected device---*/
-    _selDevice = NULL;
+    _selDevice = nullptr;
 
     devlist = new QP_DevList(settings);
 
-    connect(this, SIGNAL(itemSelectionChanged()), 
-        this, SLOT(slotDisksSelected()));
+    connect(this, &QP_DriveList::itemSelectionChanged, this, &QP_DriveList::slotDisksSelected);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(QPoint const &)), this, SLOT(slotPopUp()));
+    connect(this, &QP_DriveList::customContextMenuRequested, this, &QP_DriveList::slotPopUp);
 }
 
-QP_DriveList::~QP_DriveList() {
+QP_DriveList::~QP_DriveList()
+{
 }
 
-void QP_DriveList::setPopup(QMenu *popup) {
+void QP_DriveList::setPopup(QMenu *popup)
+{
     _popup = popup;
 }
 
-void QP_DriveList::buildView() {
+void QP_DriveList::buildView()
+{
     /*---make the "root" of the listview---*/
     QTreeWidgetItem* ideRoot = new QTreeWidgetItem(this);
     ideRoot->setText(0, tr("Disks"));
-
 
     /*---get a list of all available devices---*/
     devlist->getDevices();
 
     //QStrList lstdrives = QP_LibParted::device_probe();
-    if (devlist->devlist.count() == 0) {
+    if (devlist->devlist.count() == 0)
+    {
         QMessageBox::information(this, "QParted",
-                QString(tr("No device found. Maybe you're not using root user?")));
+            QString(tr("No device found. Maybe you're not using root user?")));
     }
 
     /*---make the group menu---*/
     _agDevices = new QActionGroup(this);
     _agDevices->setExclusive(true);
-    connect(_agDevices, SIGNAL(selected(QAction *)), this, SLOT(slotActionSelected(QAction *)));
+    connect(_agDevices, &QActionGroup::selected, this, &QP_DriveList::slotActionSelected);
 
     /*---add every device found---*/
-    foreach(QP_Device* p, devlist->devlist)
+    for (QP_Device* p : devlist->devlist)
     {
         /*---get the device name---*/
         QString st = p->shortname();
@@ -85,53 +88,59 @@ void QP_DriveList::buildView() {
         QTreeWidgetItem *item = addDevice(st, ideRoot);
 
         /*---add to the group menu---*/
-	QAction *actDisk = new QAction(st, _agDevices);
+        QAction *actDisk = new QAction(st, _agDevices);
         actDisk->setCheckable(true);
 
         QP_DeviceNode *devicenode = new QP_DeviceNode();
         devicenode->action = actDisk;
         devicenode->listitem = item;
 
-        p->setData((void *)devicenode);
+        p->setData(reinterpret_cast<void *>(devicenode));
     }
 
     if (ideRoot->childCount())
-        ideRoot->setExpanded( true );
+        ideRoot->setExpanded(true);
     else
         delete ideRoot;
 }
 
-QTreeWidgetItem *QP_DriveList::addDevice(QString dev, QTreeWidgetItem *parent) {
+QTreeWidgetItem* QP_DriveList::addDevice(QString dev, QTreeWidgetItem* parent)
+{
     QTreeWidgetItem* item = new QTreeWidgetItem(parent);
     item->setText(0, dev);
 
     return item;
 }
 
-QActionGroup *QP_DriveList::agDevices() {
+QActionGroup* QP_DriveList::agDevices()
+{
     return _agDevices;
 }
 
-QP_Device *QP_DriveList::selDevice() {
+QP_Device* QP_DriveList::selDevice()
+{
     return _selDevice;
 }
 
-void QP_DriveList::slotDisksSelected() {
+void QP_DriveList::slotDisksSelected()
+{
     QTreeWidgetItem* item = currentItem();
     /*---if the item selected is not the root---*/
-    if (!item->childCount()) {
+    if (!item->childCount())
+    {
         /*---get the device name (ex. /dev/hda)---*/
         QString name = item->text(0);
 
         /*---scan for every menu in the group---*/
-	foreach(QP_Device* dev, devlist->devlist)
-	{
+        for (QP_Device* dev : devlist->devlist)
+        {
             /*---get the device node from devlist---*/
-            QP_DeviceNode *p = (QP_DeviceNode *)dev->data();
+            QP_DeviceNode* p = static_cast<QP_DeviceNode*>(dev->data());
 
             /*---the name match, so select it!---*/
-            if (p->action->text().compare(name) == 0) {
-            	p->action->setChecked(true);
+            if (p->action->text().compare(name) == 0)
+            {
+                p->action->setChecked(true);
 
                 /*---and of course selecte the "selected device"---*/
                 _selDevice = dev;
@@ -141,19 +150,21 @@ void QP_DriveList::slotDisksSelected() {
     }
 }
 
-void QP_DriveList::slotActionSelected(QAction *action) {
+void QP_DriveList::slotActionSelected(QAction* action)
+{
     /*---get the device name (ex. /dev/hda)---*/
     QString name = action->text();
 
     /*---scan for every menu in the group---*/
-    foreach(QP_Device* dev, devlist->devlist)
+    for (QP_Device* dev : devlist->devlist)
     {
         /*---get the device node from devlist---*/
-        QP_DeviceNode *p = (QP_DeviceNode *)dev->data();
+        QP_DeviceNode* p = static_cast<QP_DeviceNode*>(dev->data());
 
         /*---the name match, so select it!---*/
-        if (p->listitem->text(0).compare(name) == 0) {
-            setCurrentItem( p->listitem );
+        if (p->listitem->text(0).compare(name) == 0)
+        {
+            setCurrentItem(p->listitem);
 
             /*---and of course selecte the "selected device"---*/
             _selDevice = dev;
@@ -161,6 +172,7 @@ void QP_DriveList::slotActionSelected(QAction *action) {
     }
 }
 
-void QP_DriveList::slotPopUp() {
-    if (_popup) _popup->popup(QCursor::pos());
+void QP_DriveList::slotPopUp()
+{
+    if (_popup) _popup->popup(mapToGlobal(QCursor::pos()));
 }

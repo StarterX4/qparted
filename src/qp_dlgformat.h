@@ -26,13 +26,13 @@
  *
  * This dialog is used when user want to format an existing partition...
  */
-
 #ifndef QP_DLGFORMAT_H
 #define QP_DLGFORMAT_H
 
 #include "qparted.h"
 #include "ui_qp_ui_format.h"
 #include "qp_libparted.h"
+#include <QDialog>
 
 class QP_dlgFormat : public QDialog, public Ui::QP_UIFormat {
 Q_OBJECT

@@ -37,11 +37,11 @@
 #include "qp_libparted.h"
 
 class QP_dlgResize : public QDialog, public Ui::QP_UIResize {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QP_dlgResize(QWidget *parent=0);
-	~QP_dlgResize();
+    QP_dlgResize(QWidget *parent = nullptr);
+    ~QP_dlgResize();
     void init_dialog(QTParted::actType moveresize);      /*---clear combo box and other stuff                     ---*/
     int show_dialog();                                   /*---just show the dialog. Call it after init_dialog     ---*/
     virtual void resizeEvent(QResizeEvent *);
@@ -54,7 +54,7 @@ public:
     void setValFreeBefore();
     void setValFreeAfter();
     void setValNewSize();
-    
+
 //private:
     QP_SizePartition *sizepartition;
     QP_SizeContainer *sizecontainer;
@@ -66,7 +66,7 @@ public:
     PedSector _GrowEndPartSector;
     QTParted::actType _moveresize;
 
-protected slots:
+private slots:
     void slotChangedStart(PedSector);
     void slotChangedEnd(PedSector);
     void slotChangedPos(PedSector, PedSector);
@@ -74,5 +74,4 @@ protected slots:
     void slotFreeAfterChanged(PedSector);
     void slotNewSizeChanged(PedSector);
 };
-
 #endif

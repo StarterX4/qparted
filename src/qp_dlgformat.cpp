@@ -19,15 +19,15 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <qcombobox.h>
-#include <qlineedit.h>
-#include <qradiobutton.h>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QRadioButton>
 
 #include "qp_combospin.h"
 #include "qp_dlgformat.h"
 
 QP_dlgFormat::QP_dlgFormat(QWidget *parent):QDialog(parent),Ui::QP_UIFormat() {
-	setupUi(this);
+    setupUi(this);
 }
 
 QP_dlgFormat::~QP_dlgFormat() {
