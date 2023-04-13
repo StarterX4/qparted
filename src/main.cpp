@@ -140,8 +140,8 @@ int main(int argc, char *argv[]) {
 	QP_MainWindow mainwindow(&settings);
 
 	QSplashScreen *splash = new QSplashScreen(QPixmap(":/pixmaps/qtp_splash.png"));
-	splash::connect(&mainwindow, &QP_MainWindow::sigSplashInfo,
-			splash, &QSplashScreen::handleSplashInfo);
+	splash->connect(&mainwindow, &QP_MainWindow::sigSplashInfo,
+			splash, &QSplashScreen::message);
 	splash->finish(&mainwindow);
 	splash->show();
 
@@ -160,23 +160,3 @@ int main(int argc, char *argv[]) {
 	return rc;
 }
 
-class QSplashScreen : public QWidget
-{
-    Q_OBJECT
-
-public:
-    QSplashScreen(const QPixmap & pixmap);
-
-public slots:
-    void handleSplashInfo(const QString & info);
-};
-
-QSplashScreen::QSplashScreen(const QPixmap & pixmap)
-{
-    // ...
-}
-
-void QSplashScreen::handleSplashInfo(const QString & info)
-{
-    // handle the splash info
-}
